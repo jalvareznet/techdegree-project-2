@@ -1,6 +1,9 @@
 
 const divPage = document.querySelector('.page');
 const list = document.querySelectorAll('.student-item');
+const studentSearchButton = document.createElement('button');
+const studentSearchInput = document.createElement('input');
+const newArray = [];
 
 //The showPage Functions --to show students depending the nº of page.
 function showPage(pageNumber, list) {
@@ -31,7 +34,6 @@ function appendPageLinks(list){
   pageLinkSection.appendChild(ulLinkSection);
 
 // loop For - depending numberOfPages.length to create the <li><a></li>
-
 for( let j = 0; j < numberOfPages; j += 1 ){
   let liLinkSection = document.createElement('li');
   ulLinkSection.appendChild(liLinkSection)[j];
@@ -47,7 +49,6 @@ for( let j = 0; j < numberOfPages; j += 1 ){
   firstLi.className = 'active';
 
 // event listener defining what happend when I click a number(link).
-
 ulLinkSection.addEventListener('click', (event)=> {
   if( event.target.tagName == 'A'){
     let counterNumber = parseInt(event.target.textContent);
@@ -64,5 +65,41 @@ ulLinkSection.addEventListener('click', (event)=> {
   }
 });
 }
-
 appendPageLinks(list);
+
+// use unobstrusive javasript to append html for a search bar
+//and pagination pagination links.
+
+function appendSearchBar() {
+  let studentSearchPosition = document.querySelector('.page-header');
+  //creating the <div>
+  let divPosition = document.createElement('div');
+  studentSearchPosition.appendChild(divPosition);
+  divPosition.className = 'student-search';
+  //creating the <input>
+
+  divPosition.appendChild(studentSearchInput);
+  studentSearchInput.setAttribute('type','text');
+  //creating the <button>
+
+  studentSearchButton.textContent = 'Search';
+  divPosition.appendChild(studentSearchButton);
+}
+appendSearchBar();
+
+//event listener when click search button, depending what is inside the input.
+
+// studentSearchButton.addEventListener('click', ()=> {
+//   let valueSearchInput = studentSearchInput.value;
+//   let h3 = document.querySelectorAll('h3');
+//   let h3Content;
+// 
+//
+//  for ( let s = 0; s < h3.length; s += 1) {
+//      h3Content = h3[s].textContent;
+//
+//      if (h3Content == valueSearchInput) {
+//        newArray.push(list[s]);
+//      }
+// }
+// });
